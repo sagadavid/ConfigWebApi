@@ -24,3 +24,15 @@ GET {{ConfigWebApi_HostAddress}}/configuration/configByDI
 Accept: application/application/json
 
 ##
+
+
+GET {{ConfigWebApi_HostAddress}}/configuration/configSnapshot
+Accept: application/application/json
+
+##
+
+
+GET {{ConfigWebApi_HostAddress}}/configuration/configMonitor
+Accept: application/application/json
+
+##

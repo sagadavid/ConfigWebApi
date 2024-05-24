@@ -52,4 +52,21 @@ public class ConfigurationController(IConfiguration configuration) : ControllerB
     var config = configo.Value;
     return Ok(new { config.Type, config.ConnectionString });
   }
+
+  [HttpGet]
+  [Route("configSnapshot")]
+  public ActionResult GetConfigSnapshot([FromServices] IOptionsSnapshot<ConfigurationOptions> configo)
+  {
+    var config = configo.Value;
+    return Ok(new { config.Type, config.ConnectionString });
+  }
+
+  [HttpGet]
+  [Route("configMonitor")]
+  public ActionResult GetConfigMonitor([FromServices] IOptionsMonitor<ConfigurationOptions> configo)
+  {
+    var config = configo.CurrentValue;
+    return Ok(new { config.Type, config.ConnectionString });
+  }
+
 }
