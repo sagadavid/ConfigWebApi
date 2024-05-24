@@ -36,3 +36,8 @@ GET {{ConfigWebApi_HostAddress}}/configuration/configMonitor
 Accept: application/application/json
 
 ##
+
+GET {{ConfigWebApi_HostAddress}}/configuration/configMultipleSections
+Accept: application/application/json
+
+##

@@ -7,3 +7,5 @@ public class ConfigurationOptions
   public string ConnectionString { get; set; } = string.Empty;
 
 }
+
+

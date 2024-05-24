@@ -69,4 +69,18 @@ public class ConfigurationController(IConfiguration configuration) : ControllerB
     return Ok(new { config.Type, config.ConnectionString });
   }
 
+  [HttpGet]
+  [Route("configMultipleSections")]
+  public ActionResult GetConfigMultipleSections([FromServices] IOptionsSnapshot<ConfigOps> ops)
+  {
+    var systemConfig = ops.Get(ConfigOps.SystemConfigSectionName);
+    var businessConfig = ops.Get(ConfigOps.BusinessConfigSectionName);
+
+    return Ok(new
+    {
+      SystemConfig = systemConfig,
+      BusinessConfig = businessConfig
+    });
+  }
+
 }
