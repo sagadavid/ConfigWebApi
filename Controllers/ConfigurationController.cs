@@ -16,7 +16,7 @@ public class ConfigurationController(IConfiguration configuration) : ControllerB
   }
 
   [HttpGet]
-  [Route("dbConfig")]
+  [Route("configHardCoded")]
   public ActionResult GetDBConfig()
   {
     //hardcoded config access.. hierarchi provided by {:}
@@ -27,7 +27,7 @@ public class ConfigurationController(IConfiguration configuration) : ControllerB
   }
 
   [HttpGet]
-  [Route("configOptions")]
+  [Route("configWithBinder")]
   public ActionResult GetConfigOptions()
   {
     //strongly typed acces to config options
@@ -36,5 +36,11 @@ public class ConfigurationController(IConfiguration configuration) : ControllerB
     return Ok(new { configOptions.Type, configOptions.ConnectionString });
   }
 
-
+  [HttpGet]
+  [Route("configWithGeneric")]
+  public ActionResult GetConfigurationGenericType()
+  {
+    var configOptionsGenericType = configuration.GetSection(ConfigurationOptions.SectionName).Get<ConfigurationOptions>();
+    return Ok(new { configOptionsGenericType?.Type, configOptionsGenericType?.ConnectionString });
+  }
 }
