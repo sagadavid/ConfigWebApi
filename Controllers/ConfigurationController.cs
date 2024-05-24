@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace ConfigWebApi;
 
@@ -16,7 +17,7 @@ public class ConfigurationController(IConfiguration configuration) : ControllerB
   }
 
   [HttpGet]
-  [Route("configHardCoded")]
+  [Route("configByHardCode")]
   public ActionResult GetDBConfig()
   {
     //hardcoded config access.. hierarchi provided by {:}
@@ -27,7 +28,7 @@ public class ConfigurationController(IConfiguration configuration) : ControllerB
   }
 
   [HttpGet]
-  [Route("configWithBinder")]
+  [Route("configByBinder")]
   public ActionResult GetConfigOptions()
   {
     //strongly typed acces to config options
@@ -37,10 +38,18 @@ public class ConfigurationController(IConfiguration configuration) : ControllerB
   }
 
   [HttpGet]
-  [Route("configWithGeneric")]
+  [Route("configByGeneric")]
   public ActionResult GetConfigurationGenericType()
   {
     var configOptionsGenericType = configuration.GetSection(ConfigurationOptions.SectionName).Get<ConfigurationOptions>();
     return Ok(new { configOptionsGenericType?.Type, configOptionsGenericType?.ConnectionString });
+  }
+
+  [HttpGet]
+  [Route("configByDI")]
+  public ActionResult GetConfigByDI([FromServices] IOptions<ConfigurationOptions> configo)
+  {
+    var config = configo.Value;
+    return Ok(new { config.Type, config.ConnectionString });
   }
 }

@@ -5,18 +5,22 @@ Accept: application/json
 
 ###
 
-GET {{ConfigWebApi_HostAddress}}/configuration/configHardCoded
+GET {{ConfigWebApi_HostAddress}}/configuration/configByHardCode
 Accept: application/application/json
 
 ###
 
-GET {{ConfigWebApi_HostAddress}}/configuration/configWithBinder
+GET {{ConfigWebApi_HostAddress}}/configuration/configByBinder
 Accept: application/application/json
 
 ###
 
-
-GET {{ConfigWebApi_HostAddress}}/configuration/configWithGeneric
+GET {{ConfigWebApi_HostAddress}}/configuration/configByGeneric
 Accept: application/application/json
 
 ###
+
+GET {{ConfigWebApi_HostAddress}}/configuration/configByDI
+Accept: application/application/json
+
+##
