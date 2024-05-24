@@ -25,4 +25,16 @@ public class ConfigurationController(IConfiguration configuration) : ControllerB
     return Ok(new { Type = type, ConnectionString = conString });
 
   }
+
+  [HttpGet]
+  [Route("configOptions")]
+  public ActionResult GetConfigOptions()
+  {
+    //strongly typed acces to config options
+    var configOptions = new ConfigurationOptions();
+    configuration.Bind(ConfigurationOptions.SectionName, configOptions);
+    return Ok(new { configOptions.Type, configOptions.ConnectionString });
+  }
+
+
 }

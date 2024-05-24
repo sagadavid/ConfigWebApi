@@ -10,3 +10,7 @@ Accept: application/application/json
 
 ###
 
+GET {{ConfigWebApi_HostAddress}}/configuration/configOptions
+Accept: application/application/json
+
+###
