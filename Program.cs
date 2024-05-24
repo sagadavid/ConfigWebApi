@@ -10,14 +10,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Dependency injectin for configuration IOptions<TOption> interface
-builder.Services.Configure<ConfigurationOptions>(builder.Configuration.GetSection(ConfigurationOptions.SectionName));
+// //Dependency injectin for configuration IOptions<TOption> interface
+// builder.Services.Configure<ConfigurationOptions>(builder.Configuration.GetSection(ConfigurationOptions.SectionName));
 
-//get access multiple sectins in configuration by named options-1
-builder.Services.Configure<ConfigOps>(ConfigOps.SystemConfigSectionName, builder.Configuration.GetSection($"{ConfigOps.SectionName}:{ConfigOps.SystemConfigSectionName}"));
+// //get access multiple sectins in configuration by named options-1
+// builder.Services.Configure<ConfigOps>(ConfigOps.SystemConfigSectionName, builder.Configuration.GetSection($"{ConfigOps.SectionName}:{ConfigOps.SystemConfigSectionName}"));
 
-//get access multiple sectins in configuration by named options-2
-builder.Services.Configure<ConfigOps>(ConfigOps.BusinessConfigSectionName, builder.Configuration.GetSection($"{ConfigOps.SectionName}:{ConfigOps.BusinessConfigSectionName}"));
+// //get access multiple sectins in configuration by named options-2
+// builder.Services.Configure<ConfigOps>(ConfigOps.BusinessConfigSectionName, builder.Configuration.GetSection($"{ConfigOps.SectionName}:{ConfigOps.BusinessConfigSectionName}"));
+
+//group register the config options, instead of mass code above
+builder.Services.GroupConfigOptions(builder.Configuration);
 
 var app = builder.Build();
 
